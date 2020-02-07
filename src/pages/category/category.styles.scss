@@ -1,0 +1,20 @@
+@import '../../assets/danzerpress-layouts/danzerpress-layouts.scss';
+
+.platform-wrapper {
+    @include row();
+    max-width: 600px;
+    margin: auto;
+
+    .platform-box {
+        @include col($col-4, ('default': 2));
+
+        .platform-info {
+            padding: 20px;
+            cursor: pointer;
+            border: 2px solid lightgrey;
+            // box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+
+            // box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+        }
+    }
+}

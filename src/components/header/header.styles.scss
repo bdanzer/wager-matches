@@ -1,0 +1,9 @@
+@import '../../assets/danzerpress-layouts/danzerpress-layouts.scss';
+
+#main-nav {
+    @include row();
+    min-height: 60px;
+    background: darkgrey;
+    justify-content: center;
+    align-items: center;
+}

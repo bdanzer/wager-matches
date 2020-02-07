@@ -1,0 +1,18 @@
+@import '../../assets/danzerpress-layouts/danzerpress-layouts.scss';
+
+.category-wrap {
+    @include row();
+    max-width: 800px;
+    margin: auto;
+
+    .category-box {
+        @include col($col-3, ('default': 2));
+        cursor: pointer;
+
+        .image {
+            padding-top: 130%;
+            background-size: cover;
+            background-position: center;        
+        }
+    }
+}

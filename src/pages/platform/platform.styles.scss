@@ -1,0 +1,21 @@
+@import '../../assets/danzerpress-layouts/danzerpress-layouts.scss';
+
+.matched-results-wrap {
+    @include row();
+    max-width: 800px;
+    margin: auto;
+    
+    .matched-result-box {
+        background: grey;
+        @include col((default: 1, css: $col-css));
+    }
+}
+
+select {
+    width: 100%;
+    -webkit-appearance: none;
+    background: none;
+    border: none;
+    background: lightgrey;
+    padding: 10px;
+}

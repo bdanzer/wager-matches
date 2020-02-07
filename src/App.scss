@@ -1,3 +1,14 @@
+@import './assets/danzerpress-layouts/danzerpress-layouts.scss';
+
+.posts {
+  @include row();
+
+  .post-item {
+    @include col($col-3);
+    width: 100%;
+  }
+}
+
 .App {
   text-align: center;
 }

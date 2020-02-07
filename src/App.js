@@ -1,26 +1,44 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from 'react'
+
+import { useDispatch, useSelector } from 'react-redux'
+import { createStructuredSelector } from 'reselect'
+import { setCurrentUser } from './redux/user/user.actions'
+import { selectCurrentUser } from './redux/user/user.selectors'
+
+import Home from './pages/home/home.component'
+import Category from './pages/category/category.component'
+import Platform from './pages/platform/platform.component'
+
+import Header from './components/header/header.component'
+
+import { Route, Switch } from 'react-router-dom'
+
+import './App.scss'
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const dispatch = useDispatch()
+
+    //Setting test data for user
+    const testUserData = { name: 'Current User', accountBalance: 3 }
+
+    useEffect(() => {
+        dispatch(setCurrentUser(testUserData))
+    }, [])
+
+    return (
+        <div className="App">
+            <Header></Header>
+            <Switch>
+                <Route exact path="/" component={Home} />
+                <Route
+                    path="/category/:categoryid/:platform"
+                    component={Platform}
+                />
+                <Route path="/category/:categoryid" component={Category} />
+                <Route path="*" component={() => <h1>404 not found</h1>} />
+            </Switch>
+        </div>
+    )
 }
 
-export default App;
+export default App
