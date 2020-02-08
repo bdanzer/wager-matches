@@ -1,21 +1,22 @@
 import React from 'react'
 
+import MatchInfo from './match-info/match-info.component'
 import Button from '../button/button.component'
 
-export default function Matches({ matchDetails, handleAccept }) {
+import './matches.styles.scss'
+
+export default function Matches({ matchDetails, handleMatchAccept }) {
     return matchDetails.length ? (
         matchDetails.map((matchDetail, i) => (
-            <div key={i} className="matched-result-box">
-                <h2>{matchDetail.platform}</h2>
-                <h2>{matchDetail.user}</h2>
-                <h2>{matchDetail.matchType}</h2>
-                <h2>Prize ${matchDetail.price}</h2>
-                <Button onClick={() => handleAccept(matchDetail)}>
+            <MatchInfo {...matchDetail}>
+                <Button onClick={() => handleMatchAccept(matchDetail)}>
                     Accept
                 </Button>
-            </div>
+            </MatchInfo>
         ))
     ) : (
-        <h2>No Results</h2>
+        <div class="no-results">
+            <h2>No Results</h2>
+        </div>
     )
 }

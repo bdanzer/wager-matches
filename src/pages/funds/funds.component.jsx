@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
 
-import { PayPalButton } from 'react-paypal-button-v2'
-import Axios from 'axios'
+import PayButton from '../../components/pay-button/pay-button.component'
 
-export default function Funds() {
+import './funds.styles.scss'
+
+export default function Funds(props) {
     const [amount, setAmount] = useState(0)
 
     return (
@@ -22,34 +23,7 @@ export default function Funds() {
                 placeholder="5.00"
                 value={amount ? amount : ''}
             />
-            {amount ? (
-                <PayPalButton
-                    amount={amount}
-                    onSuccess={async (details, data) => {
-                        alert(
-                            'Transaction completed by ' +
-                                details.payer.name.given_name
-                        )
-
-                        console.log(data)
-                        let payPalTrans = await Axios.post(
-                            'http://localhost:4000/paypal-transaction-complete',
-                            data,
-                            {
-                                headers: {
-                                    Accept: 'application/json',
-                                },
-                            }
-                        )
-
-                        let transData = await payPalTrans.data
-
-                        console.log('recieved data', transData)
-                    }}
-                />
-            ) : (
-                ''
-            )}
+            <PayButton {...props} amount={amount} />
         </>
     )
 }

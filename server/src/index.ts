@@ -26,17 +26,19 @@ app.use(express.urlencoded({extended: true}));
 
 app.get('/', (req, res) => res.send('Hello World!'));
 
-app.post('/paypal-transaction-complete', async (req, res) => {    
-    if (req.body.status && req.body.status === 'COMPLETED') {
+app.post('/paypal-transaction-complete', async (req, res) => {  
+    // console.log(req.body, 'COMPLETED');  
         let token = await PayPal.getToken();
         let getData = await PayPal.get(PayPal.routeUrls.ORDERS + req.body.orderID, token);
+        
+        console.log(getData)
 
-        console.log(getData);
-
-        res.sendStatus(200);
-    } else {
-        res.sendStatus(401);
-    }
+        if (getData.status === 'COMPLETED') {
+            res.sendStatus(200);
+        } else {
+            res.sendStatus(401);
+        }
+        
 });
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));

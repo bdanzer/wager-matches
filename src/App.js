@@ -8,6 +8,7 @@ import { selectCurrentUser } from './redux/user/user.selectors'
 import Home from './pages/home/home.component'
 import Category from './pages/category/category.component'
 import Platform from './pages/platform/platform.component'
+import Funds from './pages/funds/funds.component'
 
 import Header from './components/header/header.component'
 
@@ -19,7 +20,7 @@ function App() {
     const dispatch = useDispatch()
 
     //Setting test data for user
-    const testUserData = { name: 'Current User', accountBalance: 3 }
+    const testUserData = { name: 'TakeDown', accountBalance: 3 }
 
     useEffect(() => {
         dispatch(setCurrentUser(testUserData))
@@ -35,6 +36,11 @@ function App() {
                     component={Platform}
                 />
                 <Route path="/category/:categoryid" component={Category} />
+                <Route path="/payment" component={Funds} />
+                <Route
+                    path="/match/:id"
+                    component={() => <div>Get Ready to rumble!</div>}
+                />
                 <Route path="*" component={() => <h1>404 not found</h1>} />
             </Switch>
         </div>

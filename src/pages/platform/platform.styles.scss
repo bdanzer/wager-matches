@@ -6,16 +6,12 @@
     margin: auto;
     
     .matched-result-box {
-        background: grey;
+        background: transparent;
+        border: 2px solid black;
         @include col((default: 1, css: $col-css));
     }
 }
 
-select {
-    width: 100%;
-    -webkit-appearance: none;
-    background: none;
-    border: none;
-    background: lightgrey;
-    padding: 10px;
+.create-match-button {
+    margin-bottom: 20px;
 }

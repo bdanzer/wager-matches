@@ -3,7 +3,7 @@ import { UserActionTypes } from './user.types'
 const INITIAL_STATE = {
     currentUser: {
         name: null,
-        accountBalance: 100,
+        accountBalance: null,
     },
 }
 

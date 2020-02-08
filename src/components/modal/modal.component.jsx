@@ -11,7 +11,7 @@ if (!modalRoot) {
     document.querySelector('body').appendChild(modalRoot)
 }
 
-export default function Modal({ children, toggle }) {
+export default function Modal({ children, toggle, isModalOpen }) {
     let el = document.createElement('div')
 
     useEffect(() => {
@@ -23,13 +23,17 @@ export default function Modal({ children, toggle }) {
     }, [])
 
     return createPortal(
-        <>
-            <div id="backdrop" onClick={toggle}></div>
-            <div className="modal-content">{children}</div>
-            <div className="close-button" onClick={toggle}>
-                x
-            </div>
-        </>,
+        isModalOpen ? (
+            <>
+                <div id="backdrop" onClick={toggle}></div>
+                <div className="modal-content">{children}</div>
+                <div className="close-button" onClick={toggle}>
+                    x
+                </div>
+            </>
+        ) : (
+            ''
+        ),
         modalRoot
     )
 }
