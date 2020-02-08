@@ -23,8 +23,8 @@ export default function Header() {
                     Home
                 </Link>
                 <div className="user-info">
-                    <Button>No Active Matches</Button>$
-                    <span>{currentUser.accountBalance}</span>
+                    <Button>No Active Matches</Button>
+                    <span>${currentUser.accountBalance}</span>
                     <span>{currentUser.name}</span>
                 </div>
             </div>
