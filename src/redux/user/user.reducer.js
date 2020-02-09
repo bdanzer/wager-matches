@@ -14,6 +14,22 @@ const userReducer = (state = INITIAL_STATE, action) => {
                 ...state,
                 currentUser: action.payload,
             }
+        case UserActionTypes.SET_CURRENT_USERNAME:
+            return {
+                ...state,
+                currentUser: {
+                    ...state.currentUser,
+                    name: action.payload,
+                },
+            }
+        case UserActionTypes.SET_CURRENT_USER_BALANCE:
+            return {
+                ...state,
+                currentUser: {
+                    ...state.currentUser,
+                    accountBalance: action.payload,
+                },
+            }
         default:
             return state
     }

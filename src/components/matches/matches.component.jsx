@@ -8,14 +8,14 @@ import './matches.styles.scss'
 export default function Matches({ matchDetails, handleMatchAccept }) {
     return matchDetails.length ? (
         matchDetails.map((matchDetail, i) => (
-            <MatchInfo {...matchDetail}>
+            <MatchInfo key={i} {...matchDetail}>
                 <Button onClick={() => handleMatchAccept(matchDetail)}>
                     Accept
                 </Button>
             </MatchInfo>
         ))
     ) : (
-        <div class="no-results">
+        <div className="no-results">
             <h2>No Results</h2>
         </div>
     )

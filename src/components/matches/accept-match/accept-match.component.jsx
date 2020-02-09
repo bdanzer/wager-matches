@@ -1,30 +1,25 @@
 import React from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { setCurrentUser } from '../../../redux/user/user.actions'
 import { useHistory } from 'react-router-dom'
+
+import useReduxUser from '../../../hooks/user.hook'
+import useReduxActiveMatch from '../../../hooks/active-match.hook'
 
 import Button from '../../button/button.component'
 
 export default function AcceptMatch({ onInsufficientFunds }) {
-    const currentUser = useSelector(state => state.user.currentUser)
-    const dispatch = useDispatch()
-
-    let history = useHistory()
-    let matchDetail = JSON.parse(localStorage.getItem('accept-match'))
+    const history = useHistory()
+    const matchDetail = JSON.parse(localStorage.getItem('accept-match'))
+    const { currentUser, setUserBalance } = useReduxUser()
+    const { setMatch } = useReduxActiveMatch()
 
     const handleSufficientFunds = () => {
         let confirmation = window.confirm('are you sure you want to accept?')
 
         if (confirmation)
-            dispatch(
-                setCurrentUser({
-                    ...currentUser,
-                    accountBalance:
-                        currentUser.accountBalance - matchDetail.price / 2,
-                })
-            )
+            setUserBalance(currentUser.accountBalance - matchDetail.price / 2)
 
         history.push(`/match/${matchDetail.matchID}`)
+        setMatch(matchDetail)
     }
 
     const handleInsufficientFunds = () => {
@@ -35,6 +30,12 @@ export default function AcceptMatch({ onInsufficientFunds }) {
         if (confirmation) {
             onInsufficientFunds()
         }
+    }
+
+    const handleAccept = () => {
+        matchDetail.price / 2 > currentUser.accountBalance
+            ? handleInsufficientFunds()
+            : handleSufficientFunds()
     }
 
     return (
@@ -48,16 +49,8 @@ export default function AcceptMatch({ onInsufficientFunds }) {
                 </>
             )}
 
-            <label>Price to enter ${matchDetail.price / 2}</label>
-            <Button
-                onClick={() =>
-                    matchDetail.price / 2 > currentUser.accountBalance
-                        ? handleInsufficientFunds()
-                        : handleSufficientFunds()
-                }
-            >
-                Accept Match
-            </Button>
+            <p>Price to enter ${matchDetail.price / 2}</p>
+            <Button onClick={handleAccept}>Accept Match</Button>
         </div>
     )
 }

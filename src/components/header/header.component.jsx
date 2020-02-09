@@ -1,31 +1,25 @@
 import React from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
 
-import Button from '../button/button.component'
+import { Link } from 'react-router-dom'
+import ActiveMatch from '../active-match/active-match.component'
+
+import useReduxUser from '../../hooks/user.hook'
 
 import './header.styles.scss'
 
 export default function Header() {
-    const currentUser = useSelector(state => state.user.currentUser)
+    const { currentUser } = useReduxUser()
 
     return (
         <nav id="main-nav">
-            <div class="wrap">
-                <Link
-                    style={{
-                        color: 'white',
-                        textDecoration: 'none',
-                        cursor: 'pointer',
-                    }}
-                    to="/"
-                >
-                    Home
-                </Link>
+            <div className="wrap">
+                <Link to="/">Home</Link>
                 <div className="user-info">
-                    <Button>No Active Matches</Button>
+                    <ActiveMatch />
                     <span>${currentUser.accountBalance}</span>
-                    <span>{currentUser.name}</span>
+                    <Link to="/profile">
+                        <span>{currentUser.name}</span>
+                    </Link>
                 </div>
             </div>
         </nav>

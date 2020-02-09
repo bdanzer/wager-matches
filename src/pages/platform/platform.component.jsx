@@ -12,6 +12,8 @@ import AcceptMatch from '../../components/matches/accept-match/accept-match.comp
 import Funds from '../../components/matches/funds/funds-component'
 
 import useModalView from '../../hooks/modal-view.hook'
+import useReduxActiveMatch from '../../hooks/active-match.hook'
+import useReduxUser from '../../hooks/user.hook'
 
 import './platform.styles.scss'
 
@@ -51,10 +53,12 @@ const matches = [
 ]
 
 export default function Platform({ match }) {
-    const currentUser = useSelector(state => state.user.currentUser)
+    const { currentUser } = useReduxUser()
     const [views, setModalView] = useModalView([])
     const [isModalOpen, setModal] = useState(false)
     const { platform, categoryid } = useParams()
+    const { activeMatch } = useReduxActiveMatch()
+
     const history = useHistory()
 
     let matchDetails =
@@ -74,7 +78,17 @@ export default function Platform({ match }) {
         }
     }
 
-    const handleMatchAccept = data => {
+    const hasActiveMatch = () => {
+        if (activeMatch) {
+            window.alert('You already have an active match')
+            return true
+        }
+
+        return false
+    }
+
+    const handleAcceptingMatch = data => {
+        if (hasActiveMatch()) return
         toggleModal()
         setModalView('accept')
         localStorage.setItem('accept-match', JSON.stringify(data))
@@ -85,6 +99,7 @@ export default function Platform({ match }) {
     }
 
     const handleCreatingMatch = () => {
+        if (hasActiveMatch()) return
         toggleModal()
         setModalView('create')
     }
@@ -131,7 +146,7 @@ export default function Platform({ match }) {
 
                 <Matches
                     matchDetails={matchDetails}
-                    handleMatchAccept={handleMatchAccept}
+                    handleMatchAccept={handleAcceptingMatch}
                 />
             </div>
         </div>

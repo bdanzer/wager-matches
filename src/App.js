@@ -1,14 +1,11 @@
 import React, { useEffect } from 'react'
 
-import { useDispatch, useSelector } from 'react-redux'
-import { createStructuredSelector } from 'reselect'
-import { setCurrentUser } from './redux/user/user.actions'
-import { selectCurrentUser } from './redux/user/user.selectors'
-
 import Home from './pages/home/home.component'
 import Category from './pages/category/category.component'
 import Platform from './pages/platform/platform.component'
 import Funds from './pages/funds/funds.component'
+
+import useReduxUser from './hooks/user.hook'
 
 import Header from './components/header/header.component'
 
@@ -17,13 +14,13 @@ import { Route, Switch } from 'react-router-dom'
 import './App.scss'
 
 function App() {
-    const dispatch = useDispatch()
+    const { currentUser, setUser } = useReduxUser()
 
     //Setting test data for user
     const testUserData = { name: 'TakeDown', accountBalance: 3 }
 
     useEffect(() => {
-        dispatch(setCurrentUser(testUserData))
+        setUser(testUserData)
     }, [])
 
     return (
@@ -37,6 +34,14 @@ function App() {
                 />
                 <Route path="/category/:categoryid" component={Category} />
                 <Route path="/payment" component={Funds} />
+                <Route
+                    path="/profile"
+                    component={() => (
+                        <div>
+                            <h2>Hello! {testUserData.name}</h2>
+                        </div>
+                    )}
+                />
                 <Route
                     path="/match/:id"
                     component={() => <div>Get Ready to rumble!</div>}
