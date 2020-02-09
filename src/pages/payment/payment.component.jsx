@@ -2,9 +2,9 @@ import React, { useState } from 'react'
 
 import PayButton from '../../components/pay-button/pay-button.component'
 
-import './funds.styles.scss'
+import './payment.styles.scss'
 
-export default function Funds(props) {
+export default function Payment(props) {
     const [amount, setAmount] = useState(0)
 
     return (
