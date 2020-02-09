@@ -53,10 +53,10 @@ const matches = [
 ]
 
 export default function Platform({ match }) {
-    const { currentUser } = useReduxUser()
     const [views, setModalView] = useModalView([])
     const [isModalOpen, setModal] = useState(false)
     const { platform, categoryid } = useParams()
+    const { currentUser } = useReduxUser()
     const { activeMatch } = useReduxActiveMatch()
 
     const history = useHistory()
@@ -146,7 +146,7 @@ export default function Platform({ match }) {
 
                 <Matches
                     matchDetails={matchDetails}
-                    handleMatchAccept={handleAcceptingMatch}
+                    onMatchAccept={handleAcceptingMatch}
                 />
             </div>
         </div>

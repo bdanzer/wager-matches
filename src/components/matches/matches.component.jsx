@@ -5,11 +5,11 @@ import Button from '../button/button.component'
 
 import './matches.styles.scss'
 
-export default function Matches({ matchDetails, handleMatchAccept }) {
+export default function Matches({ matchDetails, onMatchAccept }) {
     return matchDetails.length ? (
         matchDetails.map((matchDetail, i) => (
             <MatchInfo key={i} {...matchDetail}>
-                <Button onClick={() => handleMatchAccept(matchDetail)}>
+                <Button onClick={() => onMatchAccept(matchDetail)}>
                     Accept
                 </Button>
             </MatchInfo>
