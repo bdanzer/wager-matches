@@ -1,0 +1,7 @@
+@import '../../../assets/danzerpress-layouts/danzerpress-layouts.scss';
+
+.matched-result-box {
+    background: transparent;
+    border: 2px solid black;
+    @include col((default: 1, css: $col-css));
+}

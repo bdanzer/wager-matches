@@ -1,0 +1,22 @@
+@import '../../assets/danzerpress-layouts/danzerpress-layouts.scss';
+
+.profile-wrap {
+    @include row();
+    max-width: 900px;
+    margin: auto;
+
+    .left {
+        @include column();
+        @include col($one-third);
+        background: lightgrey;
+        > *  {
+            color: white;
+            font-weight: 600;
+            padding: 15px 0;
+        }
+    }
+
+    .right {
+        @include col($two-thirds);
+    }
+}

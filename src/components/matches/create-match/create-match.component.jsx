@@ -50,6 +50,9 @@ export default function CreateMatch() {
                     <option value="15">$15</option>
                     <option value="20">$20</option>
                 </select>
+
+                <label>5</label>
+                <input type="radio" name="gender" value="5" />
             </p>
             <Button>Create Match</Button>
         </div>

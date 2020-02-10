@@ -1,17 +1,5 @@
 @import '../../assets/danzerpress-layouts/danzerpress-layouts.scss';
 
-.matched-results-wrap {
-    @include row();
-    max-width: 800px;
-    margin: auto;
-    
-    .matched-result-box {
-        background: transparent;
-        border: 2px solid black;
-        @include col((default: 1, css: $col-css));
-    }
-}
-
 .create-match-button {
     margin-bottom: 20px;
 }

@@ -5,6 +5,8 @@ import Home from './pages/home/home.component'
 import Category from './pages/category/category.component'
 import Platform from './pages/platform/platform.component'
 import Payment from './pages/payment/payment.component'
+import Profile from './pages/profile/profile.component'
+import Match from './pages/match/match.component'
 
 import Header from './components/header/header.component'
 
@@ -33,18 +35,8 @@ function App() {
                 />
                 <Route path="/category/:categoryid" component={Category} />
                 <Route path="/payment" component={Payment} />
-                <Route
-                    path="/profile"
-                    component={() => (
-                        <div>
-                            <h2>Hello! {testUserData.name}</h2>
-                        </div>
-                    )}
-                />
-                <Route
-                    path="/match/:id"
-                    component={() => <div>Get Ready to rumble!</div>}
-                />
+                <Route path="/profile" component={Profile} />
+                <Route path="/match/:id" component={Match} />
                 <Route path="*" component={() => <h1>404 not found</h1>} />
             </Switch>
         </div>

@@ -1,5 +1,13 @@
+@import '../../assets/danzerpress-layouts/danzerpress-layouts.scss';
+
 .no-results {
     width: 100%;
     background: black;
     color: white;
+}
+
+.matched-results-wrap {
+    @include row();
+    max-width: 800px;
+    margin: auto;
 }
