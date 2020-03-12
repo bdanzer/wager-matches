@@ -1,5 +1,3 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
 ### Wager Match Goals
 
 Create/Accept a match with money that will be deposited to PayPal and once someone wins automatically pay out players with PayPal Api.
