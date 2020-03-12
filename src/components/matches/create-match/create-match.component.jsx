@@ -21,7 +21,7 @@ export default function CreateMatch() {
                 </label>
                 <select
                     id="platform-selection"
-                    onChange={e => history.push('/category/fortnut/xbox')}
+                    onChange={e => history.push('/category/fortnite/xbox')}
                 >
                     <option value="xbox">Xbox</option>
                     <option value="ps4">PS4</option>
@@ -31,7 +31,7 @@ export default function CreateMatch() {
             <p>
                 <label htmlFor="game-selection">Select or Change game</label>
                 <select id="game-selection">
-                    <option value="fortnut">Fortnite</option>
+                    <option value="fortnite">Fortnite</option>
                     <option value="cod">Call of Duty</option>
                 </select>
             </p>
